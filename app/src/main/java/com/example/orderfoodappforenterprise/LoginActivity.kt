@@ -1,13 +1,18 @@
 package com.example.orderfoodappforenterprise
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.orderfoodappforenterprise.ProfileActivity
+import com.example.orderfoodappforenterprise.R
+import com.example.orderfoodappforenterprise.SignUpActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -17,13 +22,14 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+
         mAuth = Firebase.auth
 
         login_button.setOnClickListener(){
             loginUser()
         }
         signup_textView.setOnClickListener(){
-            startActivity(Intent(this,SignUpActivity::class.java))
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
     }
     private fun loginUser() {
