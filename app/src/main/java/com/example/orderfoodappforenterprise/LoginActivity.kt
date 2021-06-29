@@ -12,6 +12,7 @@ import com.example.orderfoodappforenterprise.R
 import com.example.orderfoodappforenterprise.SignUpActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -22,16 +23,28 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
         mAuth = Firebase.auth
+
+        val bundle = intent.extras
+        if(bundle != null) {
+            //if bundle passed from Sign up
+            val newEmail = intent.getStringExtra("email").toString()
+            val newPassword = intent.getStringExtra("password").toString()
+            if(newEmail != "null" && newPassword != "null") {
+                email_editText.setText(newEmail)
+                password_editText.setText(newPassword)
+            }
+        }
 
         login_button.setOnClickListener(){
             loginUser()
         }
+
         signup_textView.setOnClickListener(){
             startActivity(Intent(this, SignUpActivity::class.java))
         }
     }
+
     private fun loginUser() {
         val email: String = email_editText.text.toString()
         val password: String = password_editText.text.toString()
@@ -45,19 +58,36 @@ class LoginActivity : AppCompatActivity() {
             mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Toast.makeText(this, "User logged in successfully", Toast.LENGTH_SHORT)
-                            .show()
-                        val i : Intent = Intent(this, ProfileActivity::class.java)
-//                        lateinit var bundle: Bundle
-//                        bundle.putString("email",email)
-//                        i.putExtras(bundle)
-                        startActivity(i)
+                        //check if this provider exist in database of provider or not
+                        checkProvider(email)
                     } else {
                         Toast.makeText(this, "Login Error: " + task.exception, Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
+        }
+    }
+
+    private fun checkProvider(email: String) {
+        var isValid = false
+        val dbRef = FirebaseDatabase.getInstance().getReference("Provider")
+        dbRef.get().addOnSuccessListener {
+            for(data in it.children) {
+                if(data.child("email").value as String == email) {
+                    isValid = true
+                    break
+                }
+            }
+
+            //handle when checked in database
+            if(isValid) {
+                Toast.makeText(this, "User logged in successfully", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, ProfileActivity::class.java))
+            }
+            else {
+                Toast.makeText(this, "Invalid user: ", Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 }
