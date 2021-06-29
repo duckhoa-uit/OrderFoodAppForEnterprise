@@ -18,15 +18,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-//        mAuth = Firebase.auth
-//        val user = mAuth.currentUser
-//
-//        if(user == null){
-//            startActivity(Intent(this, LoginActivity::class.java))
-//        }
-//        else {
-//            startActivity(Intent(this, ProfileActivity::class.java))
-//        }
-        startActivity(Intent(this, LoginActivity::class.java))
+        mAuth = Firebase.auth
+        val user = mAuth.currentUser
+
+        if(user == null){
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+        else {
+            startActivity(Intent(this, ProfileActivity::class.java))
+        }
+        //startActivity(Intent(this, LoginActivity::class.java))
     }
 }

@@ -27,6 +27,18 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/img_pizza" />
 
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/saleOff_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 50% OFF "
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold|italic"
+                android:background="@drawable/bg_saleoff" />
+
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -34,11 +46,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
             android:text="Hamburger"
             android:textSize="18dp"
             android:textStyle="bold"
-            android:textColor="@color/plain_black"
-            android:gravity="center_horizontal" />
+            android:textColor="@color/plain_black"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,7 +67,7 @@
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_star"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginLeft="10dp"
                     app:tint="@color/yellow" />
 
                 <TextView
@@ -63,36 +75,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4.6"
-                    android:textSize="15dp"
+                    android:textSize="20dp"
                     android:textStyle="bold"
                     android:textColor="@color/plain_black"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="right">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_clock"
-                    android:layout_gravity="center"/>
-
-                <TextView
-                    android:id="@+id/deliveryTime_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="15 min"
-                    android:textSize="15dp"
-                    android:textColor="@color/plain_black"
-                    android:layout_marginRight="13dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_gravity="center" />
 
             </LinearLayout>
 
