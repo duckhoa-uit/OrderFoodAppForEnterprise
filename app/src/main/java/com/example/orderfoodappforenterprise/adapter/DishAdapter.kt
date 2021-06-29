@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.orderfoodappforenterprise.FoodDetail
 import com.example.orderfoodappforenterprise.R
 import com.example.orderfoodappforenterprise.model.Dish
 import com.google.firebase.database.DataSnapshot
@@ -94,11 +95,11 @@ class DishAdapter (
                 saleOff_textView.text = " $saleOff% OFF "
             }
 
-//            setOnClickListener {
-//                val intent = Intent(context,FoodDetail::class.java)
-//                intent.putExtra("curDish", curDish)
-//                context.startActivities(arrayOf(intent))
-//            }
+            setOnClickListener {
+                val intent = Intent(context, FoodDetail::class.java)
+                intent.putExtra("curDish", curDish)
+                context.startActivities(arrayOf(intent))
+            }
         }
 
     }
