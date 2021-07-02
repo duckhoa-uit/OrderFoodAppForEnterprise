@@ -19,6 +19,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.activity_profile.profile_picture
+import kotlinx.android.synthetic.main.nav_header.*
 import java.io.File
 
 
@@ -56,6 +58,10 @@ class ProfileActivity : AppCompatActivity() {
         menu_button.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
 
+        }
+
+        back_button.setOnClickListener {
+            drawerLayout.closeDrawer(GravityCompat.END)
         }
 
         displayProvider()

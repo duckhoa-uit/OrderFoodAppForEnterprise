@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/orange_main">
+    android:background="@color/strong_orange">
 
     <ImageView
         android:id="@+id/profile_picture"
@@ -28,5 +28,15 @@
         android:fontFamily="@font/poppins_light"
         android:textColor="@color/black"
         android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="@+id/profile_picture"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
