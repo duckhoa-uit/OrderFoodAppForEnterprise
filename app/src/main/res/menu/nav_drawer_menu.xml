@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_page"
+        android:title="Home page"
+        android:icon="@drawable/ic_home_page"/>
+
+    <item
+        android:id="@+id/add_food"
+        android:title="Add food"
+        android:icon="@drawable/ic_add_food"/>
+
+    <item
+        android:id="@+id/edit_profile"
+        android:title="Edit profile"
+        android:icon="@drawable/ic_edit_note"/>
+
+    <item
+        android:id="@+id/sign_out"
+        android:title="Sign out"
+        android:icon="@drawable/ic_sign_out"/>
+
+    <item
+        android:id="@+id/statistical"
+        android:title="Statistical"
+        android:icon="@drawable/ic_statistical"/>
+</menu>

@@ -16,9 +16,9 @@
         <activity android:name=".AddFood" />
         <activity android:name=".FoodDetail" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ProfileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
