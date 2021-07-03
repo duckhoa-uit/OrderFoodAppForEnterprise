@@ -6,6 +6,6 @@ import android.os.Bundle
 class AddFood : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_food)
+        setContentView(R.layout.dialog_add_food)
     }
 }

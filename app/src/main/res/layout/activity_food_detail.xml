@@ -243,6 +243,28 @@
                     app:layout_constraintTop_toBottomOf="@+id/ic_star"
                     app:layout_goneMarginTop="35dp" />
 
+                <TextView
+                    android:id="@+id/amount_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@+id/rates_text"
+                    app:layout_constraintStart_toEndOf="@+id/rates_text"
+                    android:layout_marginStart="45dp"
+                    android:text="Amount"
+                    android:textSize="23sp"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/price_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@+id/rates_text"
+                    app:layout_constraintStart_toEndOf="@+id/amount_text"
+                    android:text="Price"
+                    android:layout_marginStart="23dp"
+                    android:textSize="23sp"
+                    android:textColor="@color/black"/>
+
                 <EditText
                     android:id="@+id/numS_textView"
                     android:layout_width="wrap_content"
@@ -321,13 +343,17 @@
                 <EditText
                     android:id="@+id/description_textView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
                     android:text="This is a description"
                     android:textSize="20dp"
-                    android:enabled="false"
+                    android:background="@drawable/bg_input_edit_text"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingTop="7dp"
+                    android:gravity="top|left"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.486"
                     app:layout_constraintStart_toStartOf="parent"
@@ -387,7 +413,7 @@
                     android:id="@+id/edit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="25dp"
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/ic_edit_note"
                     app:layout_constraintEnd_toEndOf="parent"
