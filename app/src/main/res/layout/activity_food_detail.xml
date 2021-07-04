@@ -1,430 +1,466 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout_food_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/plain_white"
     tools:context=".FoodDetail">
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="match_parent"
+        android:background="@color/plain_white"
+        tools:context=".FoodDetail">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/background"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_gravity="top"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                app:cardCornerRadius="30dp"
-                android:layout_marginTop="-25dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/background"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/orange_main" >
+                android:layout_height="250dp"
+                android:layout_gravity="top"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/image_background"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_marginTop="-25dp"
+                    android:backgroundTint="@color/orange_main"
+                    app:cardCornerRadius="30dp">
 
-                    <ImageView
-                        android:id="@+id/food_image"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/image_background"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_hamburger" />
-
-                    <LinearLayout
-                        android:id="@+id/back_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="45dp"
-                        android:background="@drawable/bg_circle"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
+                            android:id="@+id/food_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_hamburger" />
+
+                        <LinearLayout
+                            android:id="@+id/back_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginLeft="8dp"
-                            app:srcCompat="@drawable/ic_arrow_back" />
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="45dp"
+                            android:background="@drawable/bg_circle"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
-                    </LinearLayout>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                app:srcCompat="@drawable/ic_arrow_back" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+                        <LinearLayout
+                            android:id="@+id/menu_button_food_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_circle"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="@id/back_button"
+                            app:layout_constraintTop_toBottomOf="@id/back_button">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@drawable/ic_menu" />
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                        </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_layout_2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="@color/plain_white"
-                app:layout_constraintVertical_bias="0.0">
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/saleOff_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    android:cursorVisible="true"
-                    android:enabled="false"
-                    android:text="120"
-                    android:textColor="@color/edt_edit_profile"
-                    android:textCursorDrawable="@drawable/edit_text_cursor"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/textView3"
-                    app:layout_constraintTop_toBottomOf="@+id/image_l_size" />
+                </androidx.cardview.widget.CardView>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/numL_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginTop="116dp"
-                    android:cursorVisible="true"
-                    android:text="120"
-                    android:textColor="@color/edt_edit_profile"
-                    android:enabled="false"
-                    android:textCursorDrawable="@drawable/edit_text_cursor"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/image_l_size"
-                    app:layout_constraintTop_toBottomOf="@+id/rates_text" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/priceL_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="116dp"
-                    android:cursorVisible="true"
-                    android:text="120"
-                    android:textColor="@color/edt_edit_profile"
-                    android:enabled="false"
-                    android:textCursorDrawable="@drawable/edit_text_cursor"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/numL_textView"
-                    app:layout_constraintTop_toBottomOf="@+id/rates_text" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/numM_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginTop="64dp"
-                    android:cursorVisible="true"
-                    android:text="120"
-                    android:textColor="@color/edt_edit_profile"
-                    android:enabled="false"
-                    android:textCursorDrawable="@drawable/edit_text_cursor"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/image_m_size"
-                    app:layout_constraintTop_toBottomOf="@+id/rates_text" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/priceM_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="64dp"
-                    android:cursorVisible="true"
-                    android:text="120"
-                    android:textColor="@color/edt_edit_profile"
-                    android:enabled="false"
-                    android:textCursorDrawable="@drawable/edit_text_cursor"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/numM_textView"
-                    app:layout_constraintTop_toBottomOf="@+id/rates_text" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/priceS_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="12dp"
-                    android:cursorVisible="true"
-                    android:text="120"
-                    android:textColor="@color/edt_edit_profile"
-                    android:enabled="false"
-                    android:textCursorDrawable="@drawable/edit_text_cursor"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/numS_textView"
-                    app:layout_constraintTop_toBottomOf="@+id/rates_text" />
-
-                <TextView
-                    android:id="@+id/foodName_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Beef Hamburger"
-                    android:textColor="@color/plain_black"
-                    android:textSize="30dp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <ImageView
-                    android:id="@+id/ic_star"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/foodName_text"
-                    app:srcCompat="@drawable/ic_star"
-                    app:tint="@color/yellow" />
-
-                <TextView
-                    android:id="@+id/rates_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="7dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="4.6"
-                    android:textColor="#373737"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/ic_star"
-                    app:layout_constraintTop_toBottomOf="@id/foodName_text" />
-
-                <ImageButton
-                    android:id="@+id/image_s_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/rounded_button"
-                    app:layout_constraintStart_toStartOf="@id/ic_star"
-                    app:layout_constraintTop_toBottomOf="@id/ic_star" />
-
-                <TextView
-                    android:id="@+id/s_size_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="44dp"
-                    android:layout_marginTop="24dp"
-                    android:text="S"
-                    android:textColor="@color/gray"
-                    android:textSize="20dp"
-                    app:layout_constraintStart_toStartOf="@id/ic_star"
-                    app:layout_constraintTop_toBottomOf="@+id/ic_star"
-                    app:layout_goneMarginTop="35dp" />
-
-                <TextView
-                    android:id="@+id/amount_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@+id/rates_text"
-                    app:layout_constraintStart_toEndOf="@+id/rates_text"
-                    android:layout_marginStart="45dp"
-                    android:text="Amount"
-                    android:textSize="23sp"
-                    android:textColor="@color/black"/>
-
-                <TextView
-                    android:id="@+id/price_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@+id/rates_text"
-                    app:layout_constraintStart_toEndOf="@+id/amount_text"
-                    android:text="Price"
-                    android:layout_marginStart="23dp"
-                    android:textSize="23sp"
-                    android:textColor="@color/black"/>
-
-                <EditText
-                    android:id="@+id/numS_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginTop="12dp"
-                    android:cursorVisible="true"
-                    android:enabled="false"
-                    android:text="120"
-                    android:textColor="@color/edt_edit_profile"
-                    android:textCursorDrawable="@drawable/edit_text_cursor"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/image_s_size"
-                    app:layout_constraintTop_toBottomOf="@+id/rates_text" />
-
-                <ImageButton
-                    android:id="@+id/image_m_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="18dp"
-                    android:background="@drawable/rounded_button"
-                    app:layout_constraintStart_toStartOf="@+id/ic_star"
-                    app:layout_constraintTop_toBottomOf="@+id/image_s_size" />
-
-                <TextView
-                    android:id="@+id/m_size_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginTop="4dp"
-                    android:text="M"
-                    android:textColor="@color/gray"
-                    android:textSize="20dp"
-                    app:layout_constraintStart_toStartOf="@+id/image_m_size"
-                    app:layout_constraintTop_toTopOf="@+id/image_m_size" />
-
-                <ImageButton
-                    android:id="@+id/image_l_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="18dp"
-                    android:background="@drawable/rounded_button"
-                    app:layout_constraintStart_toStartOf="@+id/ic_star"
-                    app:layout_constraintTop_toBottomOf="@+id/image_m_size" />
-
-                <TextView
-                    android:id="@+id/l_size_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="4dp"
-                    android:text="L"
-                    android:textColor="@color/gray"
-                    android:textSize="20dp"
-                    app:layout_constraintStart_toStartOf="@+id/image_l_size"
-                    app:layout_constraintTop_toTopOf="@+id/image_l_size" />
-
-                <TextView
-                    android:id="@+id/description_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:singleLine="false"
-                    android:text="Description"
-                    android:textColor="@color/plain_black"
-                    android:textSize="25dp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/saleOff_textView" />
-
-                <EditText
-                    android:id="@+id/description_textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="This is a description"
-                    android:textSize="20dp"
-                    android:background="@drawable/bg_input_edit_text"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:paddingTop="7dp"
-                    android:gravity="top|left"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.486"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/description_text" />
-
-
-                <TextView
-                    android:id="@+id/rating_comment_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:singleLine="false"
-                    android:text="Rating &amp; Comment"
-                    android:textColor="@color/plain_black"
-                    android:textSize="25dp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/description_textView" />
-
-                <TextView
-                    android:id="@+id/comment_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="Comments"
-                    android:textColor="@color/black"
-                    android:textSize="17dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rating_comment_textView" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/comment_recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/comment_textView" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="52dp"
-                    android:layout_marginTop="40dp"
-                    android:text="Sale off (%): "
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/image_l_size" />
-
-                <ImageView
-                    android:id="@+id/edit_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_edit_note"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/blue" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        </androidx.core.widget.NestedScrollView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_layout_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/plain_white"
+                    app:layout_constraintVertical_bias="0.0">
 
-    </LinearLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/saleOff_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="32dp"
+                        android:cursorVisible="true"
+                        android:enabled="false"
+                        android:text="120"
+                        android:textColor="@color/edt_edit_profile"
+                        android:textCursorDrawable="@drawable/edit_text_cursor"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/textView3"
+                        app:layout_constraintTop_toBottomOf="@+id/image_l_size" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/numL_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="60dp"
+                        android:layout_marginTop="116dp"
+                        android:cursorVisible="true"
+                        android:enabled="false"
+                        android:text="120"
+                        android:textColor="@color/edt_edit_profile"
+                        android:textCursorDrawable="@drawable/edit_text_cursor"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/image_l_size"
+                        app:layout_constraintTop_toBottomOf="@+id/rates_text" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/priceL_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="116dp"
+                        android:cursorVisible="true"
+                        android:enabled="false"
+                        android:text="120"
+                        android:textColor="@color/edt_edit_profile"
+                        android:textCursorDrawable="@drawable/edit_text_cursor"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/numL_textView"
+                        app:layout_constraintTop_toBottomOf="@+id/rates_text" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/numM_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="60dp"
+                        android:layout_marginTop="64dp"
+                        android:cursorVisible="true"
+                        android:enabled="false"
+                        android:text="120"
+                        android:textColor="@color/edt_edit_profile"
+                        android:textCursorDrawable="@drawable/edit_text_cursor"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/image_m_size"
+                        app:layout_constraintTop_toBottomOf="@+id/rates_text" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/priceM_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="64dp"
+                        android:cursorVisible="true"
+                        android:enabled="false"
+                        android:text="120"
+                        android:textColor="@color/edt_edit_profile"
+                        android:textCursorDrawable="@drawable/edit_text_cursor"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/numM_textView"
+                        app:layout_constraintTop_toBottomOf="@+id/rates_text" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/priceS_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginTop="12dp"
+                        android:cursorVisible="true"
+                        android:enabled="false"
+                        android:text="120"
+                        android:textColor="@color/edt_edit_profile"
+                        android:textCursorDrawable="@drawable/edit_text_cursor"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/numS_textView"
+                        app:layout_constraintTop_toBottomOf="@+id/rates_text" />
+
+                    <TextView
+                        android:id="@+id/foodName_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="Beef Hamburger"
+                        android:textColor="@color/plain_black"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <ImageView
+                        android:id="@+id/ic_star"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/foodName_text"
+                        app:srcCompat="@drawable/ic_star"
+                        app:tint="@color/yellow" />
+
+                    <TextView
+                        android:id="@+id/rates_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="7dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="4.6"
+                        android:textColor="#373737"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/ic_star"
+                        app:layout_constraintTop_toBottomOf="@id/foodName_text" />
+
+                    <ImageButton
+                        android:id="@+id/image_s_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/rounded_button"
+                        app:layout_constraintStart_toStartOf="@id/ic_star"
+                        app:layout_constraintTop_toBottomOf="@id/ic_star" />
+
+                    <TextView
+                        android:id="@+id/s_size_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="44dp"
+                        android:layout_marginTop="24dp"
+                        android:text="S"
+                        android:textColor="@color/gray"
+                        android:textSize="20dp"
+                        app:layout_constraintStart_toStartOf="@id/ic_star"
+                        app:layout_constraintTop_toBottomOf="@+id/ic_star"
+                        app:layout_goneMarginTop="35dp" />
+
+                    <TextView
+                        android:id="@+id/amount_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="45dp"
+                        android:text="Amount"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        app:layout_constraintStart_toEndOf="@+id/rates_text"
+                        app:layout_constraintTop_toTopOf="@+id/rates_text" />
+
+                    <TextView
+                        android:id="@+id/price_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="23dp"
+                        android:text="Price"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        app:layout_constraintStart_toEndOf="@+id/amount_text"
+                        app:layout_constraintTop_toTopOf="@+id/rates_text" />
+
+                    <EditText
+                        android:id="@+id/numS_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="60dp"
+                        android:layout_marginTop="12dp"
+                        android:cursorVisible="true"
+                        android:enabled="false"
+                        android:text="120"
+                        android:textColor="@color/edt_edit_profile"
+                        android:textCursorDrawable="@drawable/edit_text_cursor"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/image_s_size"
+                        app:layout_constraintTop_toBottomOf="@+id/rates_text" />
+
+                    <ImageButton
+                        android:id="@+id/image_m_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="18dp"
+                        android:background="@drawable/rounded_button"
+                        app:layout_constraintStart_toStartOf="@+id/ic_star"
+                        app:layout_constraintTop_toBottomOf="@+id/image_s_size" />
+
+                    <TextView
+                        android:id="@+id/m_size_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="9dp"
+                        android:layout_marginTop="4dp"
+                        android:text="M"
+                        android:textColor="@color/gray"
+                        android:textSize="20dp"
+                        app:layout_constraintStart_toStartOf="@+id/image_m_size"
+                        app:layout_constraintTop_toTopOf="@+id/image_m_size" />
+
+                    <ImageButton
+                        android:id="@+id/image_l_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="18dp"
+                        android:background="@drawable/rounded_button"
+                        app:layout_constraintStart_toStartOf="@+id/ic_star"
+                        app:layout_constraintTop_toBottomOf="@+id/image_m_size" />
+
+                    <TextView
+                        android:id="@+id/l_size_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="4dp"
+                        android:text="L"
+                        android:textColor="@color/gray"
+                        android:textSize="20dp"
+                        app:layout_constraintStart_toStartOf="@+id/image_l_size"
+                        app:layout_constraintTop_toTopOf="@+id/image_l_size" />
+
+                    <TextView
+                        android:id="@+id/description_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:singleLine="false"
+                        android:text="Description"
+                        android:textColor="@color/plain_black"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/saleOff_textView" />
+
+                    <EditText
+                        android:id="@+id/description_textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/bg_input_edit_text"
+                        android:gravity="top|left"
+                        android:paddingStart="12dp"
+                        android:paddingTop="7dp"
+                        android:paddingEnd="12dp"
+                        android:text="This is a description"
+                        android:textSize="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.486"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/description_text" />
+
+
+                    <TextView
+                        android:id="@+id/rating_comment_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:singleLine="false"
+                        android:text="Rating &amp; Comment"
+                        android:textColor="@color/plain_black"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/description_textView" />
+
+                    <TextView
+                        android:id="@+id/comment_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="Comments"
+                        android:textColor="@color/black"
+                        android:textSize="17dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/rating_comment_textView" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/comment_recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/comment_textView" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginTop="40dp"
+                        android:text="Sale off (%): "
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/image_l_size" />
+
+                    <ImageView
+                        android:id="@+id/edit_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/ic_edit_note"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/blue" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView_food_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_drawer_menu"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"/>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

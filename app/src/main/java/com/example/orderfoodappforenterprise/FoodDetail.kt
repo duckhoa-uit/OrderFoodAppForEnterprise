@@ -3,6 +3,7 @@ package com.example.orderfoodappforenterprise
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.orderfoodappforenterprise.adapter.CommentAdapter
@@ -15,6 +16,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_food_detail.*
+import kotlinx.android.synthetic.main.activity_food_detail.back_button
+import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.dialog_add_food.*
+import kotlinx.android.synthetic.main.nav_header.*
 
 class FoodDetail : AppCompatActivity() {
     private lateinit var providerEmail: String
@@ -51,6 +56,25 @@ class FoodDetail : AppCompatActivity() {
 
         back_button.setOnClickListener() {
             finish()
+        }
+
+        navView_food_detail.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.add_food -> Toast.makeText(applicationContext,"Add food", Toast.LENGTH_SHORT).show()
+                R.id.home_page -> Toast.makeText(applicationContext,"Home page", Toast.LENGTH_SHORT).show()
+                R.id.edit_profile -> Toast.makeText(applicationContext,"Edit profile", Toast.LENGTH_SHORT).show()
+                R.id.sign_out -> Toast.makeText(applicationContext,"Sign out", Toast.LENGTH_SHORT).show()
+                R.id.statistical -> Toast.makeText(applicationContext,"Statistical", Toast.LENGTH_SHORT).show()
+            }
+            true
+        }
+
+        menu_button_food_detail.setOnClickListener {
+            drawerLayout_food_detail.openDrawer(GravityCompat.START)
+        }
+
+        back_button_nav.setOnClickListener {
+            drawerLayout_add_food.closeDrawer(GravityCompat.END)
         }
     }
 

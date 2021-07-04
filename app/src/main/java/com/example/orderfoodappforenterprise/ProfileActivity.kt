@@ -44,7 +44,7 @@ class ProfileActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        navView.setNavigationItemSelectedListener {
+        navView_profile.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.add_food -> Toast.makeText(applicationContext,"Add food", Toast.LENGTH_SHORT).show()
                 R.id.home_page -> Toast.makeText(applicationContext,"Home page", Toast.LENGTH_SHORT).show()
@@ -60,7 +60,7 @@ class ProfileActivity : AppCompatActivity() {
 
         }
 
-        back_button.setOnClickListener {
+        back_button_nav.setOnClickListener {
             drawerLayout.closeDrawer(GravityCompat.END)
         }
 
