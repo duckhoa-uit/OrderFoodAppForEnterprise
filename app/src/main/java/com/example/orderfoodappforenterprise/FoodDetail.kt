@@ -58,24 +58,6 @@ class FoodDetail : AppCompatActivity() {
             finish()
         }
 
-        navView_food_detail.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.add_food -> Toast.makeText(applicationContext,"Add food", Toast.LENGTH_SHORT).show()
-                R.id.home_page -> Toast.makeText(applicationContext,"Home page", Toast.LENGTH_SHORT).show()
-                R.id.edit_profile -> Toast.makeText(applicationContext,"Edit profile", Toast.LENGTH_SHORT).show()
-                R.id.sign_out -> Toast.makeText(applicationContext,"Sign out", Toast.LENGTH_SHORT).show()
-                R.id.statistical -> Toast.makeText(applicationContext,"Statistical", Toast.LENGTH_SHORT).show()
-            }
-            true
-        }
-
-        menu_button_food_detail.setOnClickListener {
-            drawerLayout_food_detail.openDrawer(GravityCompat.START)
-        }
-
-        back_button_nav.setOnClickListener {
-            drawerLayout_add_food.closeDrawer(GravityCompat.END)
-        }
     }
 
     private fun loadData(curDish: Dish) {
