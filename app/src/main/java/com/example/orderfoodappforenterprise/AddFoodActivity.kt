@@ -1,5 +1,6 @@
 package com.example.orderfoodappforenterprise
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -7,10 +8,12 @@ import androidx.core.view.GravityCompat
 import kotlinx.android.synthetic.main.dialog_add_food.*
 import kotlinx.android.synthetic.main.nav_header.*
 
-class AddFood : AppCompatActivity() {
+class AddFoodActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_add_food)
+//        setContentView(CanadaChart(this))
+
 
         navView_add_food.setNavigationItemSelectedListener {
             when(it.itemId){
@@ -27,8 +30,9 @@ class AddFood : AppCompatActivity() {
             drawerLayout_add_food.openDrawer(GravityCompat.START)
         }
 
-        back_button_nav.setOnClickListener {
-            drawerLayout_add_food.closeDrawer(GravityCompat.END)
-        }
+//        back_button_nav.setOnClickListener {
+//            drawerLayout_add_food.closeDrawer(GravityCompat.END)
+//        }
     }
 }
+

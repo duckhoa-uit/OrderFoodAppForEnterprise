@@ -13,18 +13,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OrderFoodAppForEnterprise">
+        <activity android:name=".LoadingActivity"></activity>
+        <activity android:name=".AnalyzeActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".FoodDetail" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".AddFood">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AddFoodActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
