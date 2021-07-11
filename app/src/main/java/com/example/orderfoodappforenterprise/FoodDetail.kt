@@ -2,6 +2,7 @@ package com.example.orderfoodappforenterprise
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -20,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_food_detail.back_button
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.dialog_add_food.*
 import kotlinx.android.synthetic.main.nav_header.*
+import java.lang.Exception
 
 class FoodDetail : AppCompatActivity() {
     private lateinit var providerEmail: String
@@ -54,7 +56,15 @@ class FoodDetail : AppCompatActivity() {
         val itemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         comment_recyclerView.addItemDecoration(itemDecoration)
 
-        back_button.setOnClickListener() {
+        edit_button.setOnClickListener {
+            enableEdit()
+        }
+
+        btnUpdate.setOnClickListener {
+            updateDish(curDish!!)
+        }
+
+        back_button.setOnClickListener {
             finish()
         }
 
@@ -63,9 +73,19 @@ class FoodDetail : AppCompatActivity() {
     private fun loadData(curDish: Dish) {
         foodName_text.text = curDish.name
         rates_text.text = curDish.rated
+
         priceS_textView.setText(curDish.priceS.toString())
         priceM_textView.setText(curDish.priceM.toString())
         priceL_textView.setText(curDish.priceL.toString())
+
+        numSsold_textView.setText(curDish.amountSsold.toString())
+        numMsold_textView.setText(curDish.amountMsold.toString())
+        numLsold_textView.setText(curDish.amountLsold.toString())
+
+        numSleft_textView.setText(curDish.amountS.toString())
+        numMleft_textView.setText(curDish.amountM.toString())
+        numLleft_textView.setText(curDish.amountL.toString())
+
         saleOff_textView.setText(curDish.salePercent.toString())
         description_textView.setText(curDish.description)
     }
@@ -93,5 +113,67 @@ class FoodDetail : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun updateDish(curDish: Dish) {
+        try {
+            val newNumS = numSleft_textView.text.toString().toLong()
+            val newNumM = numMleft_textView.text.toString().toLong()
+            val newNumL = numLleft_textView.text.toString().toLong()
+
+            val newPriceS = priceS_textView.text.toString().toDouble()
+            val newPriceM = priceM_textView.text.toString().toDouble()
+            val newPriceL = priceL_textView.text.toString().toDouble()
+
+            val newSaleOff = saleOff_textView.text.toString().toLong()
+            val newDes = description_textView.text.toString()
+
+            val dbRef = FirebaseDatabase.getInstance().getReference("Product/${curDish.id}")
+
+            dbRef.child("amountS").setValue(newNumS)
+            dbRef.child("amountM").setValue(newNumM)
+            dbRef.child("amountL").setValue(newNumL)
+
+            dbRef.child("priceS").setValue(newPriceS)
+            dbRef.child("priceM").setValue(newPriceM)
+            dbRef.child("priceL").setValue(newPriceL)
+
+            dbRef.child("salePercent").setValue(newSaleOff)
+            dbRef.child("description").setValue(newDes)
+
+            disableEdit()
+            Toast.makeText(this, "Update successfully!", Toast.LENGTH_LONG).show()
+        }
+        catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Please full fill information", Toast.LENGTH_LONG).show()
+        }
+
+    }
+
+    private fun enableEdit() {
+        foodName_text.isEnabled = true
+        numSleft_textView.isEnabled = true
+        numMleft_textView.isEnabled = true
+        numLleft_textView.isEnabled = true
+        priceS_textView.isEnabled = true
+        priceM_textView.isEnabled = true
+        priceL_textView.isEnabled = true
+        saleOff_textView.isEnabled = true
+        description_textView.isEnabled = true
+        btnUpdate.visibility = View.VISIBLE
+    }
+
+    private fun disableEdit() {
+        foodName_text.isEnabled = false
+        numSleft_textView.isEnabled = false
+        numMleft_textView.isEnabled = false
+        numLleft_textView.isEnabled = false
+        priceS_textView.isEnabled = false
+        priceM_textView.isEnabled = false
+        priceL_textView.isEnabled = false
+        saleOff_textView.isEnabled = false
+        description_textView.isEnabled = false
+        btnUpdate.visibility = View.GONE
     }
 }

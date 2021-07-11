@@ -2,11 +2,14 @@ package com.example.orderfoodappforenterprise.adapter
 
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.util.Log
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivities
+import android.view.Window
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orderfoodappforenterprise.FoodDetail
 import com.example.orderfoodappforenterprise.R
@@ -19,6 +22,7 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.food_item.view.*
 import java.io.File
 import java.text.DecimalFormat
+
 
 class DishAdapter (
     private val dishList: MutableList<Dish>
@@ -72,6 +76,11 @@ class DishAdapter (
         notifyDataSetChanged()
     }
 
+    private fun deleteItem(pos: Int) {
+        dishList.removeAt(pos)
+        notifyDataSetChanged()
+    }
+
     override fun onBindViewHolder(holder: DishViewHolder, position: Int) {
         val curDish = dishList[position]
 
@@ -95,6 +104,9 @@ class DishAdapter (
             amountL_value.text = curDish.amountL.toString()
 
             delete_button.setOnClickListener {
+                deleteItem(position)
+                deleteDish(curDish)
+
             }
 
             foodImage_imageView.setOnClickListener {
@@ -106,8 +118,55 @@ class DishAdapter (
 
     }
 
+    private fun deleteDish(curDish: Dish) {
+        val dbRef = FirebaseDatabase.getInstance().getReference("Product/${curDish.id}")
+        dbRef.ref.removeValue()
+    }
+
     override fun getItemCount(): Int {
         return dishList.size
     }
+
+//    private fun showDialog() {
+//        val builder: AlertDialog.Builder = AlertDialog.Builder(get)
+//
+//        builder.setTitle("Confirm")
+//        builder.setMessage("Are you sure?")
+//
+//        builder.setPositiveButton(
+//            "YES",
+//            DialogInterface.OnClickListener { dialog, which -> // Do nothing but close the dialog
+//                dialog.dismiss()
+//            })
+//
+//        builder.setNegativeButton(
+//            "NO",
+//            DialogInterface.OnClickListener { dialog, which -> // Do nothing
+//                dialog.dismiss()
+//            })
+//
+//        val alert: AlertDialog = builder.create()
+//        alert.show()
+//    }
+
+//    class AlertDialogue : AppCompatActivity() {
+//        var btnOk: Button? = null
+//        var btnCancel: Button? = null
+//        override fun onCreate(savedInstanceState: Bundle?) {
+//            super.onCreate(savedInstanceState)
+//            supportRequestWindowFeature(Window.FEATURE_NO_TITLE) //comment this line if you need to show Title.
+//            setContentView(R.layout.dialog_confirm)
+//            btnOk = findViewById<View>(R.id.ok_button) as Button
+//            btnCancel = findViewById<View>(R.id.cancel_button) as Button
+//
+//            btnOk!!.setOnClickListener {
+//                finish()
+//            }
+//
+//            btnCancel!!.setOnClickListener {
+//                finish()
+//            }
+//        }
+//    }
 
 }

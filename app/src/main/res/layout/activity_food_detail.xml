@@ -14,6 +14,7 @@
         tools:context=".FoodDetail">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -94,107 +95,163 @@
                         android:layout_width="100dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="38dp"
-                        android:cursorVisible="true"
-                        android:text="120"
-                        android:enabled="false"
-                        android:inputType="number"
-                        android:gravity="center"
+                        android:layout_marginTop="20dp"
                         android:background="@drawable/bg_borderless_edit_text"
+                        android:cursorVisible="true"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="120"
                         android:textColor="@color/edt_edit_profile"
                         android:textCursorDrawable="@drawable/edit_text_cursor"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/textView3"
-                        app:layout_constraintTop_toBottomOf="@+id/numL_textView" />
+                        app:layout_constraintTop_toBottomOf="@+id/numLleft_textView" />
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/numL_textView"
-                        android:layout_width="100dp"
+                        android:id="@+id/numLleft_textView"
+                        android:layout_width="50dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_borderless_edit_text"
                         android:cursorVisible="true"
-                        android:text="120"
                         android:enabled="false"
-                        android:inputType="number"
                         android:gravity="center"
+                        android:inputType="number"
+                        android:text="120"
                         android:textColor="@color/edt_edit_profile"
                         android:textCursorDrawable="@drawable/edit_text_cursor"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:background="@drawable/bg_borderless_edit_text"
-                        app:layout_constraintStart_toStartOf="@+id/numM_textView"
-                        app:layout_constraintTop_toBottomOf="@+id/numM_textView" />
+                        app:layout_constraintStart_toStartOf="@+id/numMleft_textView"
+                        app:layout_constraintTop_toBottomOf="@+id/numMleft_textView" />
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/priceL_textView"
                         android:layout_width="100dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="10dp"
-                        android:text="120"
+                        android:background="@drawable/bg_borderless_edit_text"
                         android:enabled="false"
-                        android:inputType="number"
+                        android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:text="120"
                         android:textColor="@color/edt_edit_profile"
                         android:textCursorDrawable="@drawable/edit_text_cursor"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:background="@drawable/bg_borderless_edit_text"
-                        android:gravity="center"
                         app:layout_constraintStart_toStartOf="@+id/priceM_textView"
                         app:layout_constraintTop_toBottomOf="@+id/priceM_textView" />
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/numM_textView"
-                        android:layout_width="100dp"
+                        android:id="@+id/numMleft_textView"
+                        android:layout_width="50dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="10dp"
-                        android:text="120"
+                        android:background="@drawable/bg_borderless_edit_text"
                         android:enabled="false"
+                        android:gravity="center"
                         android:inputType="number"
+                        android:text="120"
                         android:textColor="@color/edt_edit_profile"
                         android:textCursorDrawable="@drawable/edit_text_cursor"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:background="@drawable/bg_borderless_edit_text"
-                        android:gravity="center"
-                        app:layout_constraintStart_toStartOf="@+id/numS_textView"
-                        app:layout_constraintTop_toBottomOf="@+id/numS_textView" />
+                        app:layout_constraintStart_toStartOf="@+id/numSleft_textView"
+                        app:layout_constraintTop_toBottomOf="@+id/numSleft_textView" />
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/priceM_textView"
                         android:layout_width="100dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="10dp"
-                        android:text="120"
+                        android:background="@drawable/bg_borderless_edit_text"
                         android:enabled="false"
-                        android:inputType="number"
+                        android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:text="120"
                         android:textColor="@color/edt_edit_profile"
                         android:textCursorDrawable="@drawable/edit_text_cursor"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:background="@drawable/bg_borderless_edit_text"
-                        android:gravity="center"
                         app:layout_constraintStart_toStartOf="@+id/priceS_textView"
                         app:layout_constraintTop_toBottomOf="@+id/priceS_textView" />
 
                     <EditText
-                        android:id="@+id/numS_textView"
-                        android:layout_width="100dp"
+                        android:id="@+id/numSleft_textView"
+                        android:layout_width="50dp"
                         android:layout_height="40dp"
-                        android:layout_marginStart="50dp"
+                        android:layout_marginStart="32dp"
                         android:layout_marginTop="17dp"
                         android:background="@drawable/bg_borderless_edit_text"
+                        android:cursorVisible="true"
+                        android:enabled="false"
+                        android:gravity="center"
                         android:inputType="number"
                         android:text="120"
-                        android:enabled="false"
-                        android:cursorVisible="true"
-                        android:textCursorDrawable="@drawable/edit_text_cursor"
                         android:textColor="@color/edt_edit_profile"
+                        android:textCursorDrawable="@drawable/edit_text_cursor"
                         android:textSize="20sp"
                         android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/numSsold_textView"
+                        app:layout_constraintTop_toBottomOf="@id/left_text" />
+
+                    <EditText
+                        android:id="@+id/numSsold_textView"
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="17dp"
+                        android:background="@drawable/bg_borderless_edit_text"
+                        android:cursorVisible="true"
+                        android:enabled="false"
                         android:gravity="center"
+                        android:inputType="number"
+                        android:text="120"
+                        android:textColor="@color/edt_edit_profile"
+                        android:textCursorDrawable="@drawable/edit_text_cursor"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/image_s_size"
-                        app:layout_constraintTop_toBottomOf="@id/amount_text" />
+                        app:layout_constraintTop_toBottomOf="@id/left_text" />
+
+                    <EditText
+                        android:id="@+id/numMsold_textView"
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_borderless_edit_text"
+                        android:cursorVisible="true"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="120"
+                        android:textColor="@color/edt_edit_profile"
+                        android:textCursorDrawable="@drawable/edit_text_cursor"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/numSsold_textView"
+                        app:layout_constraintTop_toBottomOf="@+id/numSsold_textView" />
+
+
+                    <EditText
+                        android:id="@+id/numLsold_textView"
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_borderless_edit_text"
+                        android:cursorVisible="true"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="120"
+                        android:textColor="@color/edt_edit_profile"
+                        android:textCursorDrawable="@drawable/edit_text_cursor"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/numSsold_textView"
+                        app:layout_constraintTop_toBottomOf="@+id/numMsold_textView" />
 
                     <TextView
                         android:id="@+id/foodName_text"
@@ -241,8 +298,8 @@
                         android:id="@+id/image_s_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="45dp"
                         android:background="@drawable/rounded_button"
                         app:layout_constraintStart_toStartOf="@id/ic_star"
                         app:layout_constraintTop_toBottomOf="@id/ic_star" />
@@ -251,38 +308,51 @@
                         android:id="@+id/s_size_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="44dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginTop="45dp"
                         android:text="S"
-                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="@id/ic_star"
                         app:layout_constraintTop_toBottomOf="@+id/ic_star"
                         app:layout_goneMarginTop="35dp" />
 
                     <TextView
-                        android:id="@+id/amount_text"
+                        android:id="@+id/sold_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Amount"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="32dp"
+                        android:text="Sold"
                         android:textColor="@color/black"
                         android:textSize="23sp"
-                        android:layout_marginTop="5dp"
-                        app:layout_constraintStart_toStartOf="@+id/numS_textView"
+                        app:layout_constraintStart_toEndOf="@+id/rates_text"
+                        app:layout_constraintTop_toBottomOf="@+id/foodName_text" />
+
+
+                    <TextView
+                        android:id="@+id/left_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="47dp"
+                        android:layout_marginTop="32dp"
+                        android:text="Left"
+                        android:textColor="@color/black"
+                        android:textSize="23sp"
+                        app:layout_constraintStart_toEndOf="@+id/sold_text"
                         app:layout_constraintTop_toBottomOf="@+id/foodName_text" />
 
                     <TextView
                         android:id="@+id/price_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="23dp"
+                        android:layout_marginStart="50dp"
                         android:text="Price"
                         android:textColor="@color/black"
                         android:textSize="23sp"
-                        app:layout_constraintStart_toStartOf="@+id/priceS_textView"
-                        app:layout_constraintTop_toTopOf="@+id/amount_text" />
+                        app:layout_constraintStart_toEndOf="@+id/left_text"
+                        app:layout_constraintTop_toTopOf="@+id/left_text" />
 
                     <EditText
                         android:id="@+id/priceS_textView"
@@ -291,23 +361,23 @@
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="17dp"
                         android:background="@drawable/bg_borderless_edit_text"
-                        android:inputType="number"
-                        android:text="120"
-                        android:enabled="false"
                         android:cursorVisible="true"
-                        android:textCursorDrawable="@drawable/edit_text_cursor"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:text="120"
                         android:textColor="@color/edt_edit_profile"
+                        android:textCursorDrawable="@drawable/edit_text_cursor"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:gravity="center"
-                        app:layout_constraintStart_toEndOf="@+id/numS_textView"
+                        app:layout_constraintStart_toEndOf="@+id/numSleft_textView"
                         app:layout_constraintTop_toBottomOf="@id/price_text" />
 
                     <ImageButton
                         android:id="@+id/image_m_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="18dp"
                         android:background="@drawable/rounded_button"
                         app:layout_constraintStart_toStartOf="@+id/ic_star"
@@ -320,9 +390,9 @@
                         android:layout_marginStart="9dp"
                         android:layout_marginTop="4dp"
                         android:text="M"
-                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="@+id/image_m_size"
                         app:layout_constraintTop_toTopOf="@+id/image_m_size" />
 
@@ -330,7 +400,7 @@
                         android:id="@+id/image_l_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="18dp"
                         android:background="@drawable/rounded_button"
                         app:layout_constraintStart_toStartOf="@+id/ic_star"
@@ -343,9 +413,9 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="4dp"
                         android:text="L"
-                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="@+id/image_l_size"
                         app:layout_constraintTop_toTopOf="@+id/image_l_size" />
 
@@ -367,16 +437,16 @@
                     <EditText
                         android:id="@+id/description_textView"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/bg_input_edit_text"
+                        android:enabled="false"
                         android:gravity="top|left"
                         android:paddingStart="12dp"
                         android:paddingTop="7dp"
                         android:paddingEnd="12dp"
-                        android:enabled="false"
                         android:text="This is a description"
                         android:textSize="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -384,6 +454,18 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/description_text" />
 
+                    <Button
+                        android:id="@+id/btnUpdate"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bg_orange_radius"
+                        android:text="Update"
+                        android:visibility="gone"
+                        app:backgroundTint="@null"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/description_textView" />
 
                     <TextView
                         android:id="@+id/rating_comment_textView"
@@ -398,7 +480,7 @@
                         android:textSize="25dp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/description_textView" />
+                        app:layout_constraintTop_toBottomOf="@+id/btnUpdate" />
 
                     <TextView
                         android:id="@+id/comment_textView"
@@ -427,7 +509,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="52dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginTop="24dp"
                         android:text="Sale off (%): "
                         android:textSize="20dp"
                         android:textStyle="bold"
