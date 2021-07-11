@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         else {
             startActivity(Intent(this, ProfileActivity::class.java))
         }
-        //startActivity(Intent(this, LoginActivity::class.java))
     }
 }
 

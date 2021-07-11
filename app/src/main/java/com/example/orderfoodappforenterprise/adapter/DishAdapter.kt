@@ -2,9 +2,11 @@ package com.example.orderfoodappforenterprise.adapter
 
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivities
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orderfoodappforenterprise.FoodDetail
 import com.example.orderfoodappforenterprise.R
@@ -51,7 +53,7 @@ class DishAdapter (
                     dish.rated = df.format(rating)
                 }
                 else {
-                    dish.rated = "Not rated"
+                    dish.rated = "0"
                 }
 
                 dishList.add(dish)
@@ -78,7 +80,7 @@ class DishAdapter (
             val localFile = File.createTempFile("tempfile", ".jpg")
             storageRef.getFile(localFile).addOnSuccessListener {
                 val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-                holder.itemView.dishImage_imageView.setImageBitmap(bitmap)
+                holder.itemView.foodImage_imageView.setImageBitmap(bitmap)
             }
         }
         catch (e: Exception) {
@@ -86,16 +88,16 @@ class DishAdapter (
         }
 
         holder.itemView.apply {
-            dishName_textView.text = curDish.name
-            dishRating_textView.text = curDish.rated
+            foodName_textView.text = curDish.name
+            star_rating_text.text = curDish.rated
+            amountS_value.text = curDish.amountS.toString()
+            amountM_value.text = curDish.amountM.toString()
+            amountL_value.text = curDish.amountL.toString()
 
-            val saleOff = curDish.salePercent.toInt()
-            if(saleOff != 0) {
-                saleOff_textView.visibility = View.VISIBLE
-                saleOff_textView.text = " $saleOff% OFF "
+            delete_button.setOnClickListener {
             }
 
-            setOnClickListener {
+            foodImage_imageView.setOnClickListener {
                 val intent = Intent(context, FoodDetail::class.java)
                 intent.putExtra("curDish", curDish)
                 context.startActivities(arrayOf(intent))

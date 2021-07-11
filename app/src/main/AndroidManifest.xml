@@ -15,11 +15,11 @@
         android:theme="@style/Theme.OrderFoodAppForEnterprise">
         <activity android:name=".LoadingActivity"></activity>
         <activity android:name=".AnalyzeActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".FoodDetail" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

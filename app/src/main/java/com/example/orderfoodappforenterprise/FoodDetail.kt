@@ -84,6 +84,8 @@ class FoodDetail : AppCompatActivity() {
 
                 if(commentAdapter.itemCount == 0)
                     comment_textView.text = "No comments yet!"
+                else
+                    comment_textView.text = "Comments"
             }
 
             override fun onCancelled(error: DatabaseError) {

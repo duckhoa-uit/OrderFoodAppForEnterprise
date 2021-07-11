@@ -10,6 +10,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.orderfoodappforenterprise.adapter.DishAdapter
 import com.example.orderfoodappforenterprise.model.Dish
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -30,7 +32,7 @@ import java.io.File
 
 class ProfileActivity : AppCompatActivity() {
     private var providerKey = ""
-//    private lateinit var dishAdapter: DishAdapter
+    private lateinit var dishAdapter: DishAdapter
     lateinit var toggle: ActionBarDrawerToggle
     private var providerEmail = Firebase.auth.currentUser?.email.toString()
     private var providerId = ""
@@ -48,9 +50,9 @@ class ProfileActivity : AppCompatActivity() {
             loadDishes.await()
         }
 
-//        dishAdapter = DishAdapter(mutableListOf())
-//        allFood_recyclerView.adapter = dishAdapter
-        val layoutManager = GridLayoutManager(this,2)
+        dishAdapter = DishAdapter(mutableListOf())
+        allFood_recyclerView.adapter = dishAdapter
+        val layoutManager = LinearLayoutManager(this)
         allFood_recyclerView.layoutManager = layoutManager
 
         //Sidebar menu
@@ -140,7 +142,7 @@ class ProfileActivity : AppCompatActivity() {
                     if(data.child("provider").value as String == providerKey) {
                         val item = data.getValue(Dish::class.java)
                         if (item != null) {
-//                            dishAdapter.addDish(item)
+                            dishAdapter.addDish(item)
                         }
                     }
                 }
