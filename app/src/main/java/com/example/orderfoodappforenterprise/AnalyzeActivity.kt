@@ -69,14 +69,17 @@ class AnalyzeActivity : AppCompatActivity() {
         loadDateToButton()
         loadChartForTheFirstTime()
 
-        GlobalScope.launch {
-            seriesData = async { reloadMonthChartSeries() }.await()
+        GlobalScope.launch(Dispatchers.Default) {
+            seriesData.removeAll(seriesData)
+            val data =
+                withContext(Dispatchers.Default) { reloadMonthChartSeries() }
             delay(1000)
-            seriesData.forEach {
-                if (it.getValue("value").toString().toDouble() == 0.0){
-                    seriesData.remove(it)
+            if (seriesData.size >= 1){
+                seriesData.removeAll {
+                    it.getValue("value").toString().toDouble() == 0.0
                 }
             }
+
             loadCartesianSeriesData()
             loadingDialog.cancelLoadingDialog()
         }
@@ -91,20 +94,21 @@ class AnalyzeActivity : AppCompatActivity() {
         }
     }
 
-    suspend fun reloadLineChart() = coroutineScope{
+    private suspend fun reloadLineChart() = coroutineScope{
         GlobalScope.launch {
+            seriesData.removeAll(seriesData)
             seriesData = async { reloadMonthChartSeries() }.await()
             delay(1000)
-            seriesData.forEach {
-                if (it.getValue("value").toString().toDouble() == 0.0){
-                    seriesData.remove(it)
+            if (seriesData.size >= 1){
+                seriesData.removeAll {
+                    it.getValue("value").toString().toDouble() == 0.0
                 }
             }
             loadCartesianSeriesData()
         }
     }
 
-    fun showDatePickerDialog(btn: Button, loadingDialog: LoadingDialog){
+    private fun showDatePickerDialog(btn: Button, loadingDialog: LoadingDialog){
         val arr = btn.text.toString().split("/")
         val day = arr[0].toInt()
         val month = arr[1].toInt()
@@ -235,9 +239,14 @@ class AnalyzeActivity : AppCompatActivity() {
             dbRef.addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for(childBranch in snapshot.children){
+                        if (seriesData.find { it.getValue("x") == childBranch.child("time").value.toString() } == null){
+                            seriesData.add(ValueDataEntry(childBranch.child("time").value.toString(), 0))
+                        }
+                    }
+                    for(childBranch in snapshot.children){
                         println(childBranch.child("time").value.toString())
+                        println(seriesData.find { it.getValue("x") != childBranch.child("time").value.toString() })
 
-                        seriesData.add(ValueDataEntry(childBranch.child("time").value.toString(), 0))
                         //check if bill is purchased
                         if (childBranch.child("status").value.toString() == "done"){
                             //get products reference of one bill
@@ -306,11 +315,16 @@ class AnalyzeActivity : AppCompatActivity() {
         series.hovered().markers()
             .type(MarkerType.CIRCLE)
             .size(4.0)
+        series.selected().markers().enabled(true)
+        series.selected().markers().fill("#FF8526")
+        series.selected().markers().stroke("#FF8526")
+        series.selected().markers().type(MarkerType.CIRCLE).size(5)
         series.tooltip()
             .position("right")
             .anchor(Anchor.LEFT_CENTER)
             .offsetX(5.0)
             .offsetY(5.0)
+        series.stroke("2.5 #FF8526")
     }
     private fun loadChartForTheFirstTime(){
         cartesian.xScroller(true);
@@ -320,12 +334,13 @@ class AnalyzeActivity : AppCompatActivity() {
         xZoom.getEndRatio()
         cartesian.animation(true)
         cartesian.padding(10.0, 20.0, 5.0, 20.0)
-        cartesian.crosshair().enabled(true)
+        cartesian.crosshair().enabled(false)
         cartesian.crosshair()
             .yLabel(true) // TODO ystroke
             .yStroke(null as Stroke?, null, null, null as String?, null as String?)
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
-        cartesian.title("Analyze income from ${btnFromDate.text} to ${btnToDate.text}.")
+        cartesian.tooltip().background().fill("#FF8526")
+        cartesian.title("Analyze total income each day from ${btnFromDate.text} to ${btnToDate.text}.")
         cartesian.yAxis(0).title("Income")
         cartesian.xAxis(0).labels().padding(5.0, 5.0, 5.0, 5.0)
         cartesian.legend().enabled(true)
@@ -333,9 +348,7 @@ class AnalyzeActivity : AppCompatActivity() {
         cartesian.legend().padding(0.0, 0.0, 10.0, 0.0)
 
         lineChart.setChart(cartesian)
-
     }
 
 
 }
-
