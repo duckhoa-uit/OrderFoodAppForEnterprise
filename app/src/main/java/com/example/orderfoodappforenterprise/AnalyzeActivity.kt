@@ -12,15 +12,10 @@ import com.anychart.AnyChart
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.anychart.charts.Cartesian
-import com.anychart.charts.Cartesian.instantiate
 import com.anychart.core.cartesian.series.Line
-import com.anychart.data.Mapping
-import com.anychart.data.Set
 import com.anychart.enums.Anchor
 import com.anychart.enums.MarkerType
 import com.anychart.enums.TooltipPositionMode
-import com.anychart.graphics.vector.Stroke
-import com.example.orderfoodappforenterprise.model.CustomDataEntry
 import com.example.orderfoodappforenterprise.model.DishIncome
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_analyze.*
@@ -326,7 +321,6 @@ class AnalyzeActivity : AppCompatActivity() {
         series.stroke("2.5 #FF8526")
     }
     private fun loadChartForTheFirstTime(){
-        println("loadChartForTheFirstTime")
         cartesian = AnyChart.line()
 
         cartesian.xScroller(true);
@@ -337,20 +331,32 @@ class AnalyzeActivity : AppCompatActivity() {
 
         cartesian.animation(true)
         cartesian.padding(10.0, 20.0, 5.0, 20.0)
-        cartesian.crosshair().enabled(true)
-        cartesian.crosshair()
-            .yLabel(true) // TODO ystroke
-            .yStroke(null as Stroke?, null, null, null as String?, null as String?)
+//        cartesian.crosshair().enabled(true)
+//        cartesian.crosshair()
+//            .yLabel(true) // TODO ystroke
+//            .yStroke(null as Stroke?, null, null, null as String?, null as String?)
 
+        //custome tooltip
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
         cartesian.tooltip().background().fill("#FF8526")
-        cartesian.title("Analyze total income from ${btnFromDate.text} to ${btnToDate.text}.")
+        cartesian.title("Analyze total income from ${btnFromDate.text} to ${btnToDate.text}.").title().fontColor("#000000")
+        cartesian.title().fontSize("20px")
 
-        cartesian.yAxis(0).title("Income ($)")
-        cartesian.xAxis(0).labels().padding(5.0, 5.0, 5.0, 5.0)
+        val yAxis = cartesian.yAxis(0)
+        yAxis.title("Income ($)").title().fontColor("#000000")
+        yAxis.title().fontSize("17px")
+        yAxis.labels().fontColor("#000000")
+        yAxis.labels().fontSize("15px")
+        yAxis.labels().format("\${%value}")
+
+        val xAxis = cartesian.xAxis(0)
+        xAxis.labels().padding(5.0, 5.0, 5.0, 5.0)
+        xAxis.labels().fontColor("#000000")
+        xAxis.labels().fontSize("15px")
 
         cartesian.legend().enabled(true)
-        cartesian.legend().fontSize(13.0)
+        cartesian.legend().selectable(false)
+        cartesian.legend().fontSize(17.0)
         cartesian.legend().padding(0.0, 0.0, 10.0, 0.0)
 
         lineChart.setChart(cartesian)
