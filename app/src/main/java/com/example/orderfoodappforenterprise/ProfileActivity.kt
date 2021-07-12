@@ -69,8 +69,7 @@ class ProfileActivity : AppCompatActivity() {
         navView_profile.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.add_food -> startActivity(Intent(this, AddFoodActivity::class.java))
-                R.id.home_page -> Toast.makeText(applicationContext,"Home page", Toast.LENGTH_SHORT).show()
-                R.id.edit_profile -> Toast.makeText(applicationContext,"Edit profile", Toast.LENGTH_SHORT).show()
+                R.id.edit_profile -> startActivity(Intent(this, EditProfileActivity::class.java))
                 R.id.sign_out -> Toast.makeText(applicationContext,"Sign out", Toast.LENGTH_SHORT).show()
                 R.id.statistical -> {
                     val intent = Intent(Intent(this, AnalyzeActivity::class.java))
@@ -84,7 +83,6 @@ class ProfileActivity : AppCompatActivity() {
 
         menu_button.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
-
         }
 
 //        back_button_nav.setOnClickListener {
@@ -145,6 +143,7 @@ class ProfileActivity : AppCompatActivity() {
         val dbRef = FirebaseDatabase.getInstance().getReference("Product")
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                dishAdapter.deleteAll()
                 for(data in snapshot.children) {
                     if(data.child("provider").value as String == providerKey) {
                         val item = data.getValue(Dish::class.java)
