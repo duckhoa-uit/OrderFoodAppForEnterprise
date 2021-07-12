@@ -12,11 +12,15 @@ import com.anychart.AnyChart
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.anychart.charts.Cartesian
+import com.anychart.charts.Cartesian.instantiate
 import com.anychart.core.cartesian.series.Line
+import com.anychart.data.Mapping
+import com.anychart.data.Set
 import com.anychart.enums.Anchor
 import com.anychart.enums.MarkerType
 import com.anychart.enums.TooltipPositionMode
 import com.anychart.graphics.vector.Stroke
+import com.example.orderfoodappforenterprise.model.CustomDataEntry
 import com.example.orderfoodappforenterprise.model.DishIncome
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_analyze.*
@@ -63,28 +67,24 @@ class AnalyzeActivity : AppCompatActivity() {
         //init data
         providerId = intent.getStringExtra("providerId").toString()
         dishesId = intent.getStringArrayListExtra("dishesId")!!
-        cartesian = AnyChart.line()
 
         setInitData()
         loadDateToButton()
         loadChartForTheFirstTime()
 
         GlobalScope.launch(Dispatchers.Default) {
-            seriesData.removeAll(seriesData)
             val data =
                 withContext(Dispatchers.Default) { reloadMonthChartSeries() }
             delay(1000)
             if (seriesData.size >= 1){
-                seriesData.removeAll {
+                seriesData.removeIf {
                     it.getValue("value").toString().toDouble() == 0.0
                 }
             }
-
             loadCartesianSeriesData()
             loadingDialog.cancelLoadingDialog()
         }
 
-        println("seriesData size: ${seriesData.size}")
         //event listener
         btnFromDate.setOnClickListener {
             showDatePickerDialog(btnFromDate, loadingDialog)
@@ -97,7 +97,7 @@ class AnalyzeActivity : AppCompatActivity() {
     private suspend fun reloadLineChart() = coroutineScope{
         GlobalScope.launch {
             seriesData.removeAll(seriesData)
-            seriesData = async { reloadMonthChartSeries() }.await()
+            val data = async { reloadMonthChartSeries() }.await()
             delay(1000)
             if (seriesData.size >= 1){
                 seriesData.removeAll {
@@ -156,7 +156,7 @@ class AnalyzeActivity : AppCompatActivity() {
         btnFromDate.text = oneMonthAgoDate
     }
 
-    fun setInitData(){
+    private fun setInitData(){
         dishesId.forEach {
             dishIncomes.add(DishIncome(
                 it,
@@ -224,7 +224,6 @@ class AnalyzeActivity : AppCompatActivity() {
     private suspend fun reloadMonthChartSeries(): MutableList<DataEntry>  = coroutineScope{
         resetIncomes()
         //remove series
-        cartesian.removeAllSeries()
         seriesData.removeAll(seriesData)
 
         //get date end and start
@@ -245,8 +244,6 @@ class AnalyzeActivity : AppCompatActivity() {
                     }
                     for(childBranch in snapshot.children){
                         println(childBranch.child("time").value.toString())
-                        println(seriesData.find { it.getValue("x") != childBranch.child("time").value.toString() })
-
                         //check if bill is purchased
                         if (childBranch.child("status").value.toString() == "done"){
                             //get products reference of one bill
@@ -265,6 +262,7 @@ class AnalyzeActivity : AppCompatActivity() {
                 }
             })
         }
+        println("reloadMonthChartSeries, size: ${seriesData.size}")
         seriesData.forEach {
             println("${it.getValue("x")}: ${it.getValue("value")}")
         }
@@ -309,6 +307,7 @@ class AnalyzeActivity : AppCompatActivity() {
     }
 
     private fun loadCartesianSeriesData(){
+        cartesian.removeAllSeries()
         val series: Line = cartesian.line(seriesData)
         series.name("Income")
         series.hovered().markers().enabled(true)
@@ -327,28 +326,34 @@ class AnalyzeActivity : AppCompatActivity() {
         series.stroke("2.5 #FF8526")
     }
     private fun loadChartForTheFirstTime(){
+        println("loadChartForTheFirstTime")
+        cartesian = AnyChart.line()
+
         cartesian.xScroller(true);
         val xZoom = cartesian.xZoom()
         xZoom.setToPointsCount(6, false, null)
         xZoom.getStartRatio()
         xZoom.getEndRatio()
+
         cartesian.animation(true)
         cartesian.padding(10.0, 20.0, 5.0, 20.0)
-        cartesian.crosshair().enabled(false)
+        cartesian.crosshair().enabled(true)
         cartesian.crosshair()
             .yLabel(true) // TODO ystroke
             .yStroke(null as Stroke?, null, null, null as String?, null as String?)
+
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
         cartesian.tooltip().background().fill("#FF8526")
-        cartesian.title("Analyze total income each day from ${btnFromDate.text} to ${btnToDate.text}.")
-        cartesian.yAxis(0).title("Income")
+        cartesian.title("Analyze total income from ${btnFromDate.text} to ${btnToDate.text}.")
+
+        cartesian.yAxis(0).title("Income ($)")
         cartesian.xAxis(0).labels().padding(5.0, 5.0, 5.0, 5.0)
+
         cartesian.legend().enabled(true)
         cartesian.legend().fontSize(13.0)
         cartesian.legend().padding(0.0, 0.0, 10.0, 0.0)
 
         lineChart.setChart(cartesian)
     }
-
 
 }

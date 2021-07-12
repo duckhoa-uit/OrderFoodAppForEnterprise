@@ -27,6 +27,7 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_profile.profile_picture
 import kotlinx.android.synthetic.main.nav_header.*
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
@@ -46,7 +47,7 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        lifecycleScope.launch {
+        GlobalScope.launch {
             val loadProviderId = async { loadProviderId() }
             providerId = loadProviderId.await()
 
@@ -91,6 +92,8 @@ class ProfileActivity : AppCompatActivity() {
 //        }
 
         displayProvider()
+
+        println(providerId)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -188,7 +191,6 @@ class ProfileActivity : AppCompatActivity() {
                         dishesId.add(
                             childBranch.child("id").value.toString()
                         )
-                        println("dishesId ${childBranch.child("id").value.toString()}")
                     }
 
                 }
