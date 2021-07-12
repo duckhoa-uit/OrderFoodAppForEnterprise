@@ -155,14 +155,17 @@ class ProfileActivity : AppCompatActivity() {
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 dishAdapter.deleteAll()
+                var count = 0
                 for(data in snapshot.children) {
                     if(data.child("provider").value as String == providerKey) {
                         val item = data.getValue(Dish::class.java)
                         if (item != null) {
                             dishAdapter.addDish(item)
+                            count++
                         }
                     }
                 }
+                post_amount.text = count.toString()
             }
 
             override fun onCancelled(error: DatabaseError) {

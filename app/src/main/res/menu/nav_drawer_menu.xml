@@ -11,14 +11,14 @@
         android:icon="@drawable/ic_add_food"/>
 
     <item
+        android:id="@+id/inbox"
+        android:title="Inbox"
+        android:icon="@drawable/ic_inbox"/>
+
+    <item
         android:id="@+id/edit_profile"
         android:title="Edit profile"
         android:icon="@drawable/ic_edit_note"/>
-
-    <item
-        android:id="@+id/sign_out"
-        android:title="Sign out"
-        android:icon="@drawable/ic_sign_out"/>
 
     <item
         android:id="@+id/statistical"
@@ -26,7 +26,7 @@
         android:icon="@drawable/ic_statistical"/>
 
     <item
-        android:id="@+id/inbox"
-        android:title="Inbox"
-        android:icon="@drawable/ic_inbox"/>
+        android:id="@+id/sign_out"
+        android:title="Sign out"
+        android:icon="@drawable/ic_sign_out"/>
 </menu>

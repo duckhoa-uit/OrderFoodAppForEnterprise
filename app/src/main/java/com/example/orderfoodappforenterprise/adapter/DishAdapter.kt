@@ -3,6 +3,7 @@ package com.example.orderfoodappforenterprise.adapter
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -126,47 +127,5 @@ class DishAdapter (
     override fun getItemCount(): Int {
         return dishList.size
     }
-
-//    private fun showDialog() {
-//        val builder: AlertDialog.Builder = AlertDialog.Builder(get)
-//
-//        builder.setTitle("Confirm")
-//        builder.setMessage("Are you sure?")
-//
-//        builder.setPositiveButton(
-//            "YES",
-//            DialogInterface.OnClickListener { dialog, which -> // Do nothing but close the dialog
-//                dialog.dismiss()
-//            })
-//
-//        builder.setNegativeButton(
-//            "NO",
-//            DialogInterface.OnClickListener { dialog, which -> // Do nothing
-//                dialog.dismiss()
-//            })
-//
-//        val alert: AlertDialog = builder.create()
-//        alert.show()
-//    }
-
-//    class AlertDialogue : AppCompatActivity() {
-//        var btnOk: Button? = null
-//        var btnCancel: Button? = null
-//        override fun onCreate(savedInstanceState: Bundle?) {
-//            super.onCreate(savedInstanceState)
-//            supportRequestWindowFeature(Window.FEATURE_NO_TITLE) //comment this line if you need to show Title.
-//            setContentView(R.layout.dialog_confirm)
-//            btnOk = findViewById<View>(R.id.ok_button) as Button
-//            btnCancel = findViewById<View>(R.id.cancel_button) as Button
-//
-//            btnOk!!.setOnClickListener {
-//                finish()
-//            }
-//
-//            btnCancel!!.setOnClickListener {
-//                finish()
-//            }
-//        }
-//    }
 
 }

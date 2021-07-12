@@ -117,13 +117,13 @@
                                 android:id="@+id/post_amount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="70dp"
-                                android:layout_marginTop="210dp"
+                                android:layout_marginTop="215dp"
                                 android:fontFamily="@font/poppins_light"
                                 android:text="285"
                                 android:textColor="@color/black"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -131,71 +131,10 @@
                                 android:id="@+id/post_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="POSTS"
-                                app:layout_constraintStart_toStartOf="@+id/post_amount"
+                                android:text="DISHES"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/post_amount" />
-
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="50dp"
-                                android:layout_marginStart="30dp"
-                                android:layout_marginTop="210dp"
-                                android:background="@color/plain_black"
-                                app:layout_constraintStart_toEndOf="@+id/post_amount"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/rating_value"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="50dp"
-                                android:layout_marginTop="210dp"
-                                android:fontFamily="@font/poppins_light"
-                                android:text="80%"
-                                android:textColor="@color/black"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                app:layout_constraintStart_toEndOf="@+id/post_text"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/rating_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="RATING"
-                                app:layout_constraintStart_toStartOf="@+id/rating_value"
-                                app:layout_constraintTop_toBottomOf="@+id/rating_value" />
-
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="50dp"
-                                android:layout_marginStart="30dp"
-                                android:layout_marginTop="210dp"
-                                android:background="@color/plain_black"
-                                app:layout_constraintStart_toEndOf="@+id/rating_value"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/revenue_value"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="50dp"
-                                android:layout_marginTop="210dp"
-                                android:fontFamily="@font/poppins_light"
-                                android:text="$1000"
-                                android:textColor="@color/black"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                app:layout_constraintStart_toEndOf="@+id/rating_value"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/revenue_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="REVENUE"
-                                app:layout_constraintStart_toStartOf="@+id/revenue_value"
-                                app:layout_constraintTop_toBottomOf="@+id/revenue_value" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 

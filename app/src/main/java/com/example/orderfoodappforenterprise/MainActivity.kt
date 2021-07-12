@@ -38,12 +38,7 @@ class MainActivity : AppCompatActivity() {
         mAuth = Firebase.auth
         val user = mAuth.currentUser
 
-        if(user == null){
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
-        else {
-            startActivity(Intent(this, ProfileActivity::class.java))
-        }
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 
     private suspend fun loadProviderId(providerEmail: String): String  = coroutineScope{
