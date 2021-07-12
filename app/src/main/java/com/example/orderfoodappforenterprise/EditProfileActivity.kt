@@ -50,10 +50,16 @@ class EditProfileActivity : AppCompatActivity() {
 
         navView_profile.setNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.add_food -> startActivity(Intent(this, AddFoodActivity::class.java))
                 R.id.home_page -> startActivity(Intent(this, ProfileActivity::class.java))
+                R.id.add_food -> startActivity(Intent(this, AddFoodActivity::class.java))
                 R.id.inbox -> startActivity(Intent(this, ChatActivity::class.java))
-                R.id.sign_out -> Toast.makeText(applicationContext,"Sign out", Toast.LENGTH_SHORT).show()
+                R.id.sign_out -> {
+                    Firebase.auth.signOut()
+                    val i = Intent(this, MainActivity::class.java)
+                    i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(i)
+                    Toast.makeText(applicationContext, "Sign out", Toast.LENGTH_SHORT).show()
+                }
                 R.id.statistical -> {
                     val intent = Intent(Intent(this, AnalyzeActivity::class.java))
                     startActivity(intent)

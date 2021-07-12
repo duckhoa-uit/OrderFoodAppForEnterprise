@@ -2,6 +2,7 @@ package com.example.orderfoodappforenterprise
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
@@ -17,8 +18,11 @@ import com.anychart.enums.Anchor
 import com.anychart.enums.MarkerType
 import com.anychart.enums.TooltipPositionMode
 import com.example.orderfoodappforenterprise.model.DishIncome
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_analyze.*
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.coroutines.*
 import java.time.LocalDate
 import java.util.*
@@ -47,22 +51,34 @@ class AnalyzeActivity : AppCompatActivity() {
         //init navigation bar
         navView_analyze.setNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.add_food -> Toast.makeText(applicationContext,"Add food", Toast.LENGTH_SHORT).show()
-                R.id.home_page -> Toast.makeText(applicationContext,"Home page", Toast.LENGTH_SHORT).show()
-                R.id.edit_profile -> Toast.makeText(applicationContext,"Edit profile", Toast.LENGTH_SHORT).show()
-                R.id.sign_out -> Toast.makeText(applicationContext,"Sign out", Toast.LENGTH_SHORT).show()
-                R.id.statistical -> Toast.makeText(applicationContext,"Statistical", Toast.LENGTH_SHORT).show()
+                R.id.home_page -> startActivity(Intent(this, ProfileActivity::class.java))
+                R.id.add_food -> startActivity(Intent(this, AddFoodActivity::class.java))
+                R.id.edit_profile -> startActivity(Intent(this, EditProfileActivity::class.java))
+                R.id.inbox -> startActivity(Intent(this, ChatActivity::class.java))
+                R.id.sign_out -> {
+                    Firebase.auth.signOut()
+                    val i = Intent(this, MainActivity::class.java)
+                    i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(i)
+                    Toast.makeText(applicationContext, "Sign out", Toast.LENGTH_SHORT).show()
+                }
             }
             true
         }
+
         menu_button_analyze.setOnClickListener {
             drawerLayout_analyze.openDrawer(GravityCompat.START)
         }
 
         //init data
-        providerId = intent.getStringExtra("providerId").toString()
-        dishesId = intent.getStringArrayListExtra("dishesId")!!
+//        providerId = intent.getStringExtra("providerId").toString()
+//        dishesId = intent.getStringArrayListExtra("dishesId")!!
 
+        providerId = MainActivity.KotlinConstantClass.PROVIDER_ID
+        dishesId = MainActivity.KotlinConstantClass.DISHES_ID
+
+        println("MainActivity.KotlinConstantClass.PROVIDER_ID: " + MainActivity.KotlinConstantClass.PROVIDER_ID)
+        println("MainActivity.KotlinConstantClass.DISHES_ID size: " + MainActivity.KotlinConstantClass.DISHES_ID.size)
         setInitData()
         loadDateToButton()
         loadChartForTheFirstTime()
@@ -319,6 +335,8 @@ class AnalyzeActivity : AppCompatActivity() {
             .offsetX(5.0)
             .offsetY(5.0)
         series.stroke("2.5 #FF8526")
+
+        cartesian.title().text()
     }
     private fun loadChartForTheFirstTime(){
         cartesian = AnyChart.line()
@@ -331,14 +349,13 @@ class AnalyzeActivity : AppCompatActivity() {
 
         cartesian.animation(true)
         cartesian.padding(10.0, 20.0, 5.0, 20.0)
-//        cartesian.crosshair().enabled(true)
-//        cartesian.crosshair()
-//            .yLabel(true) // TODO ystroke
-//            .yStroke(null as Stroke?, null, null, null as String?, null as String?)
 
         //custome tooltip
-        cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
-        cartesian.tooltip().background().fill("#FF8526")
+        val tooltip = cartesian.tooltip()
+        tooltip.positionMode(TooltipPositionMode.POINT)
+        tooltip.background().fill("#FF8526")
+        //TODO
+
         cartesian.title("Analyze total income from ${btnFromDate.text} to ${btnToDate.text}.").title().fontColor("#000000")
         cartesian.title().fontSize("20px")
 
@@ -346,15 +363,16 @@ class AnalyzeActivity : AppCompatActivity() {
         yAxis.title("Income ($)").title().fontColor("#000000")
         yAxis.title().fontSize("17px")
         yAxis.labels().fontColor("#000000")
-        yAxis.labels().fontSize("15px")
+        yAxis.labels().fontSize("14px")
         yAxis.labels().format("\${%value}")
 
         val xAxis = cartesian.xAxis(0)
         xAxis.labels().padding(5.0, 5.0, 5.0, 5.0)
         xAxis.labels().fontColor("#000000")
-        xAxis.labels().fontSize("15px")
+        xAxis.labels().fontSize("14px")
 
         cartesian.legend().enabled(true)
+        cartesian.legend()
         cartesian.legend().selectable(false)
         cartesian.legend().fontSize(17.0)
         cartesian.legend().padding(0.0, 0.0, 10.0, 0.0)

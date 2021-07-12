@@ -12,9 +12,16 @@ import com.example.orderfoodappforenterprise.R
 import com.example.orderfoodappforenterprise.SignUpActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
@@ -24,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         mAuth = Firebase.auth
+
 
         val bundle = intent.extras
         if(bundle != null) {
@@ -89,5 +97,48 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    private suspend fun loadProviderId(providerEmail: String): String  = coroutineScope{
+        var providerId = ""
+        //get providerId
+        val dbRef = FirebaseDatabase.getInstance().getReference("Provider").orderByChild("email").equalTo(providerEmail)
+        dbRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for(childBranch in snapshot.children){
+                    println("childBranch.key.toString(): "+ childBranch.key.toString())
+                    MainActivity.KotlinConstantClass.PROVIDER_ID = childBranch.key.toString()
+                    providerId = childBranch.key.toString()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        return@coroutineScope providerId
+    }
+
+    private suspend fun loadDishes() = coroutineScope{
+        val dbRef = FirebaseDatabase.getInstance().getReference("Product")
+
+        dbRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                MainActivity.KotlinConstantClass.DISHES_ID.removeAll(MainActivity.KotlinConstantClass.DISHES_ID)
+
+                for(childBranch in snapshot.children){
+                    if (childBranch.child("provider").value.toString() == MainActivity.KotlinConstantClass.PROVIDER_ID){
+                        MainActivity.KotlinConstantClass.DISHES_ID.add(
+                            childBranch.child("id").value.toString()
+                        )
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 }

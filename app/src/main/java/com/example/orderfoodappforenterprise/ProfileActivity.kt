@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.orderfoodappforenterprise.adapter.DishAdapter
 import com.example.orderfoodappforenterprise.model.Dish
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -42,14 +43,19 @@ class ProfileActivity : AppCompatActivity() {
     private var providerEmail = Firebase.auth.currentUser?.email.toString()
     private var providerId = ""
     private var dishesId = mutableListOf<String>()
+    private lateinit var mAuth: FirebaseAuth
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+        mAuth = Firebase.auth
+        val user = mAuth.currentUser
 
         GlobalScope.launch {
-            val loadProviderId = async { loadProviderId() }
-            providerId = loadProviderId.await()
+            val loadProviderId = async { loadProviderId(user?.email!!) }
+            MainActivity.KotlinConstantClass.PROVIDER_ID = loadProviderId.await()
 
             val loadDishes = async { loadDishes() }
             loadDishes.await()
@@ -71,11 +77,15 @@ class ProfileActivity : AppCompatActivity() {
                 R.id.add_food -> startActivity(Intent(this, AddFoodActivity::class.java))
                 R.id.edit_profile -> startActivity(Intent(this, EditProfileActivity::class.java))
                 R.id.inbox -> startActivity(Intent(this, ChatActivity::class.java))
-                R.id.sign_out -> Toast.makeText(applicationContext,"Sign out", Toast.LENGTH_SHORT).show()
+                R.id.sign_out -> {
+                    Firebase.auth.signOut()
+                    val i = Intent(this, MainActivity::class.java)
+                    i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(i)
+                    Toast.makeText(applicationContext, "Sign out", Toast.LENGTH_SHORT).show()
+                }
                 R.id.statistical -> {
                     val intent = Intent(Intent(this, AnalyzeActivity::class.java))
-                    intent.putExtra("providerId", providerId)
-                    intent.putStringArrayListExtra("dishesId", dishesId.toCollection(ArrayList()))
                     startActivity(intent)
                 }
             }
@@ -161,13 +171,15 @@ class ProfileActivity : AppCompatActivity() {
         })
     }
 
-    private suspend fun loadProviderId(): String  = coroutineScope{
+    private suspend fun loadProviderId(providerEmail: String): String  = coroutineScope{
+        var providerId = ""
         //get providerId
         val dbRef = FirebaseDatabase.getInstance().getReference("Provider").orderByChild("email").equalTo(providerEmail)
-        dbRef.addValueEventListener(object: ValueEventListener{
+        dbRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for(childBranch in snapshot.children){
-                    println("childBranch.key.toString()"+ childBranch.key.toString())
+                    println("childBranch.key.toString(): "+ childBranch.key.toString())
+                    MainActivity.KotlinConstantClass.PROVIDER_ID = childBranch.key.toString()
                     providerId = childBranch.key.toString()
                 }
             }
@@ -182,17 +194,16 @@ class ProfileActivity : AppCompatActivity() {
     private suspend fun loadDishes() = coroutineScope{
         val dbRef = FirebaseDatabase.getInstance().getReference("Product")
 
-        dbRef.addValueEventListener(object: ValueEventListener{
+        dbRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                dishesId.removeAll(dishesId)
+                MainActivity.KotlinConstantClass.DISHES_ID.removeAll(MainActivity.KotlinConstantClass.DISHES_ID)
 
                 for(childBranch in snapshot.children){
-                    if (childBranch.child("provider").value.toString() == providerId){
-                        dishesId.add(
+                    if (childBranch.child("provider").value.toString() == MainActivity.KotlinConstantClass.PROVIDER_ID){
+                        MainActivity.KotlinConstantClass.DISHES_ID.add(
                             childBranch.child("id").value.toString()
                         )
                     }
-
                 }
             }
 
