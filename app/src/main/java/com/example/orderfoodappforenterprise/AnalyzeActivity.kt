@@ -354,7 +354,9 @@ class AnalyzeActivity : AppCompatActivity() {
         val tooltip = cartesian.tooltip()
         tooltip.positionMode(TooltipPositionMode.POINT)
         tooltip.background().fill("#FF8526")
-        //TODO
+        tooltip.titleFormat("Date: {%x}")
+        tooltip.valuePrefix("$")
+        tooltip.fontSize(15)
 
         cartesian.title("Analyze total income from ${btnFromDate.text} to ${btnToDate.text}.").title().fontColor("#000000")
         cartesian.title().fontSize("20px")
