@@ -68,7 +68,7 @@ class ProfileActivity : AppCompatActivity() {
 
         navView_profile.setNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.add_food -> Toast.makeText(applicationContext,"Add food", Toast.LENGTH_SHORT).show()
+                R.id.add_food -> startActivity(Intent(this, AddFoodActivity::class.java))
                 R.id.home_page -> Toast.makeText(applicationContext,"Home page", Toast.LENGTH_SHORT).show()
                 R.id.edit_profile -> Toast.makeText(applicationContext,"Edit profile", Toast.LENGTH_SHORT).show()
                 R.id.sign_out -> Toast.makeText(applicationContext,"Sign out", Toast.LENGTH_SHORT).show()

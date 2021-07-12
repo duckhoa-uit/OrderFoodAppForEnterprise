@@ -15,7 +15,7 @@
         android:theme="@style/Theme.OrderFoodAppForEnterprise">
         <activity android:name=".LoadingActivity" />
         <activity android:name=".AnalyzeActivity" />
-        <activity android:name=".LoginActivity" >
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,7 @@
         <activity android:name=".FoodDetail" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginActivity">
 
         </activity>
         <activity android:name=".AddFoodActivity" />

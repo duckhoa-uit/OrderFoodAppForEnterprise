@@ -10,7 +10,7 @@ class Dish(
     var priceS: Double = 0.0,
     var priceM: Double = 0.0,
     var priceL: Double = 0.0,
-    var rated: String = "",
+    var rated: String = "0",
     var category: String = "",
     var description: String = "",
     var salePercent: Long = 0L,
