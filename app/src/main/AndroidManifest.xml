@@ -26,9 +26,10 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".EditProfileActivity">
-        </activity>
+        <activity android:name=".EditProfileActivity"/>
         <activity android:name=".AddFoodActivity" />
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".MessageChatActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

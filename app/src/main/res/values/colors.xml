@@ -22,4 +22,5 @@
     <color name="red">#DE0000</color>
     <color name="light_orange">#ffb74d</color>
     <color name="green">#009E0F</color>
+    <color name="gray_message">#E8E8E8</color>
 </resources>

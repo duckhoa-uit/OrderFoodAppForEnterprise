@@ -70,6 +70,7 @@ class ProfileActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.add_food -> startActivity(Intent(this, AddFoodActivity::class.java))
                 R.id.edit_profile -> startActivity(Intent(this, EditProfileActivity::class.java))
+                R.id.inbox -> startActivity(Intent(this, ChatActivity::class.java))
                 R.id.sign_out -> Toast.makeText(applicationContext,"Sign out", Toast.LENGTH_SHORT).show()
                 R.id.statistical -> {
                     val intent = Intent(Intent(this, AnalyzeActivity::class.java))
