@@ -336,7 +336,7 @@ class AnalyzeActivity : AppCompatActivity() {
             .offsetY(5.0)
         series.stroke("2.5 #FF8526")
 
-        cartesian.title().text()
+        reloadChartTitle()
     }
     private fun loadChartForTheFirstTime(){
         cartesian = AnyChart.line()
@@ -378,6 +378,10 @@ class AnalyzeActivity : AppCompatActivity() {
         cartesian.legend().padding(0.0, 0.0, 10.0, 0.0)
 
         lineChart.setChart(cartesian)
+    }
+
+    fun reloadChartTitle(){
+        cartesian.title("Analyze total income from ${btnFromDate.text} to ${btnToDate.text}.")
     }
 
 }
