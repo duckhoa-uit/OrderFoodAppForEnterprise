@@ -1,5 +1,6 @@
 package com.example.orderfoodappforenterprise
 
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,23 +17,17 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_food_detail.*
 import kotlinx.android.synthetic.main.activity_food_detail.back_button
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.dialog_add_food.*
 import kotlinx.android.synthetic.main.nav_header.*
+import java.io.File
 import java.lang.Exception
 
 class FoodDetail : AppCompatActivity() {
     private lateinit var providerEmail: String
-
-    private var priceS: Double = 0.0
-    private var priceM: Double = 0.0
-    private var priceL: Double = 0.0
-
-    private var numS: Long = 0
-    private var numM: Long = 0
-    private var numL: Long = 0
 
     private lateinit var commentAdapter: CommentAdapter
 
@@ -44,6 +39,19 @@ class FoodDetail : AppCompatActivity() {
         val curDish = intent.getParcelableExtra<Dish>("curDish")
 
         if (curDish != null) {
+            //load food image
+            val storageRef = FirebaseStorage.getInstance().getReference("dish_image/${curDish.id}.jpg")
+            try {
+                val localFile = File.createTempFile("tempfile", ".jpg")
+                storageRef.getFile(localFile).addOnSuccessListener {
+                    val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                    food_image.setImageBitmap(bitmap)
+                }
+            }
+            catch (e: Exception) {
+                e.printStackTrace()
+            }
+
             loadData(curDish)
             loadComment(curDish)
         }

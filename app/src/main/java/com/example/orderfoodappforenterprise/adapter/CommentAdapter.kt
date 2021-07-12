@@ -70,6 +70,7 @@ class CommentAdapter (
                         name_textView.text = name
                         time_textView.text = curComment.time
                         content_textView.text = curComment.comment
+                        showRatingImage(holder, curComment.rating)
                     }
 
                     break
@@ -82,5 +83,53 @@ class CommentAdapter (
         return commentList.size
     }
 
+    private fun showRatingImage(holder: CommentViewHolder, rating: Long) {
+        when(rating) {
+            1L -> {
+                holder.itemView.status_textView.text = "Awful"
+                holder.itemView.star1_image.setImageResource(R.drawable.ic_star)
+                holder.itemView.star2_image.setImageResource(R.drawable.ic_empty_star)
+                holder.itemView.star3_image.setImageResource(R.drawable.ic_empty_star)
+                holder.itemView.star4_image.setImageResource(R.drawable.ic_empty_star)
+                holder.itemView.star5_image.setImageResource(R.drawable.ic_empty_star)
+            }
+
+            2L -> {
+                holder.itemView.status_textView.text = "Bad"
+                holder.itemView.star1_image.setImageResource(R.drawable.ic_star)
+                holder.itemView.star2_image.setImageResource(R.drawable.ic_star)
+                holder.itemView.star3_image.setImageResource(R.drawable.ic_empty_star)
+                holder.itemView.star4_image.setImageResource(R.drawable.ic_empty_star)
+                holder.itemView.star5_image.setImageResource(R.drawable.ic_empty_star)
+            }
+
+            3L -> {
+                holder.itemView.status_textView.text = "Normal"
+                holder.itemView.star1_image.setImageResource(R.drawable.ic_star)
+                holder.itemView.star2_image.setImageResource(R.drawable.ic_star)
+                holder.itemView.star3_image.setImageResource(R.drawable.ic_star)
+                holder.itemView.star4_image.setImageResource(R.drawable.ic_empty_star)
+                holder.itemView.star5_image.setImageResource(R.drawable.ic_empty_star)
+            }
+
+            4L -> {
+                holder.itemView.status_textView.text = "Good"
+                holder.itemView.star1_image.setImageResource(R.drawable.ic_star)
+                holder.itemView.star2_image.setImageResource(R.drawable.ic_star)
+                holder.itemView.star3_image.setImageResource(R.drawable.ic_star)
+                holder.itemView.star4_image.setImageResource(R.drawable.ic_star)
+                holder.itemView.star5_image.setImageResource(R.drawable.ic_empty_star)
+            }
+
+            5L -> {
+                holder.itemView.status_textView.text = "Awesome"
+                holder.itemView.star1_image.setImageResource(R.drawable.ic_star)
+                holder.itemView.star2_image.setImageResource(R.drawable.ic_star)
+                holder.itemView.star3_image.setImageResource(R.drawable.ic_star)
+                holder.itemView.star4_image.setImageResource(R.drawable.ic_star)
+                holder.itemView.star5_image.setImageResource(R.drawable.ic_star)
+            }
+        }
+    }
 
 }
