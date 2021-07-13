@@ -1,9 +1,13 @@
 package com.example.orderfoodappforenterprise.activities
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.location.Address
 import android.location.Geocoder
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -15,12 +19,14 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.schibstedspain.leku.LATITUDE
 import com.schibstedspain.leku.LOCATION_ADDRESS
 import com.schibstedspain.leku.LONGITUDE
 import com.schibstedspain.leku.LocationPickerActivity
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.activity_edit_profile.menu_button
+import java.io.File
 import java.util.*
 
 class EditProfileActivity : AppCompatActivity() {
@@ -34,6 +40,8 @@ class EditProfileActivity : AppCompatActivity() {
     private var curLat = 0.0
     private var curLon = 0.0
     private var curAddress = ""
+    private var key = ""
+    private lateinit var imageUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +50,7 @@ class EditProfileActivity : AppCompatActivity() {
         providerEmail = Firebase.auth.currentUser?.email.toString()
 
         loadData()
+
 
         //Sidebar menu
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
@@ -80,9 +89,26 @@ class EditProfileActivity : AppCompatActivity() {
         update_button.setOnClickListener {
             updateData()
         }
+        camera_button.setOnClickListener() {
+            selectImage()
+        }
     }
 
     private fun loadData() {
+        //load avatar from fire storage
+        val customerEmail = Firebase.auth.currentUser?.email.toString()
+        val imgName = customerEmail.replace(".", "_")
+        val storageRef = FirebaseStorage.getInstance().getReference("avatar_image/$imgName.jpg")
+        try {
+            val localFile = File.createTempFile("tempfile", ".jpg")
+            storageRef.getFile(localFile).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                profile_picture.setImageBitmap(bitmap)
+            }
+        }
+        catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
         val dbRef = FirebaseDatabase.getInstance()
             .getReference("Provider")
             .orderByChild("email")
@@ -108,6 +134,15 @@ class EditProfileActivity : AppCompatActivity() {
 
         })
     }
+    private fun selectImage() {
+        val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+        startActivityForResult(gallery, 100)
+    }
+    private fun uploadImage(email: String) {
+        val imgName = email.replace(".", "_")
+        val storageRef = FirebaseStorage.getInstance().getReference("avatar_image/$imgName.jpg")
+        storageRef.putFile(imageUri)
+    }
 
     private fun updateData() {
         val name = name_inputText.text.toString()
@@ -119,6 +154,7 @@ class EditProfileActivity : AppCompatActivity() {
         dbRef.child("phoneNumber").setValue(phoneNumber)
         dbRef.child("location").setValue(address)
         Toast.makeText(this, "Update successfully!", Toast.LENGTH_LONG).show()
+        uploadImage(email_inputText.text.toString())
     }
 
     private fun showMap() {
@@ -143,6 +179,10 @@ class EditProfileActivity : AppCompatActivity() {
                     convertLocationFromCoordination()
 
                 address_inputText.setText(curAddress)
+            }
+            if(requestCode == 100) {
+                imageUri = data?.data!!
+                profile_picture.setImageURI(imageUri)
             }
         }
     }
