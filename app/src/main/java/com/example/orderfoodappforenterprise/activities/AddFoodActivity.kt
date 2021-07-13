@@ -1,4 +1,4 @@
-package com.example.orderfoodappforenterprise
+package com.example.orderfoodappforenterprise.activities
 
 import android.content.Intent
 import android.net.Uri
@@ -8,6 +8,7 @@ import android.provider.MediaStore
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import com.example.orderfoodappforenterprise.*
 import com.example.orderfoodappforenterprise.model.Dish
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot

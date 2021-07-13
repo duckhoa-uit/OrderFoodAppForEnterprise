@@ -1,4 +1,4 @@
-package com.example.orderfoodappforenterprise
+package com.example.orderfoodappforenterprise.activities
 
 import android.content.Intent
 import android.location.Address
@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import com.example.orderfoodappforenterprise.R
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

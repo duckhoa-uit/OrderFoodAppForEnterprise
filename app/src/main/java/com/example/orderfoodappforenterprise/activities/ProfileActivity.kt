@@ -1,20 +1,15 @@
-package com.example.orderfoodappforenterprise
+package com.example.orderfoodappforenterprise.activities
 
-import android.app.Dialog
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.orderfoodappforenterprise.R
 import com.example.orderfoodappforenterprise.adapter.DishAdapter
 import com.example.orderfoodappforenterprise.model.Dish
 import com.google.firebase.auth.FirebaseAuth

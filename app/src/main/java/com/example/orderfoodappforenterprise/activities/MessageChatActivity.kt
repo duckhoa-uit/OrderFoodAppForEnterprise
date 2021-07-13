@@ -1,4 +1,4 @@
-package com.example.orderfoodappforenterprise
+package com.example.orderfoodappforenterprise.activities
 
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.orderfoodappforenterprise.R
 import com.example.orderfoodappforenterprise.adapter.MessageAdapter
 import com.example.orderfoodappforenterprise.model.ChatItem
 import com.google.firebase.auth.ktx.auth

@@ -1,4 +1,4 @@
-package com.example.orderfoodappforenterprise
+package com.example.orderfoodappforenterprise.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.orderfoodappforenterprise.R
 import com.example.orderfoodappforenterprise.adapter.ChatAdapter
 import com.example.orderfoodappforenterprise.model.ChatItem
 import com.google.firebase.auth.ktx.auth
@@ -19,7 +20,6 @@ import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.activity_chat.drawerLayout
 import kotlinx.android.synthetic.main.activity_chat.menu_button
 import kotlinx.android.synthetic.main.activity_chat.navView_profile
-import kotlinx.android.synthetic.main.activity_edit_profile.*
 
 class ChatActivity : AppCompatActivity() {
 

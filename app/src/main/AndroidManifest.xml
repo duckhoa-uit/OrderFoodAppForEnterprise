@@ -13,9 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OrderFoodAppForEnterprise">
-        <activity android:name=".LoadingActivity" />
-        <activity android:name=".AnalyzeActivity" />
-        <activity android:name=".MainActivity" >
+        <activity android:name=".activities.LoadingActivity" />
+        <activity android:name=".activities.AnalyzeActivity" />
+        <activity android:name=".activities.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,13 +23,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".FoodDetail" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".EditProfileActivity"/>
-        <activity android:name=".AddFoodActivity" />
-        <activity android:name=".ChatActivity" />
-        <activity android:name=".MessageChatActivity" />
+        <activity android:name=".activities.ProfileActivity" />
+        <activity android:name=".activities.EditProfileActivity"/>
+        <activity android:name=".activities.AddFoodActivity" />
+        <activity android:name=".activities.ChatActivity" />
+        <activity android:name=".activities.MessageChatActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
@@ -43,7 +41,7 @@
             android:label="@string/leku_title_activity_location_picker"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -51,7 +49,7 @@
                 android:resource="@xml/leku_searchable" />
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".activities.MainActivity" />
         </activity>
 
     </application>

@@ -1,11 +1,15 @@
-package com.example.orderfoodappforenterprise
+package com.example.orderfoodappforenterprise.activities
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.orderfoodappforenterprise.LoginActivity
-import com.example.orderfoodappforenterprise.model.Dish
+import android.util.Log
+import androidx.fragment.app.Fragment
+import com.example.orderfoodapp.fragments.LoginFragment
+import com.example.orderfoodapp.fragments.SignUpFragment
+import com.example.orderfoodappforenterprise.R
+import com.example.orderfoodappforenterprise.adapter.LoginAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -13,13 +17,13 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var loginFragment: Fragment
+    private lateinit var signupFragment: Fragment
 
     class KotlinConstantClass {
         companion object {
@@ -29,16 +33,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        mAuth = FirebaseAuth.getInstance()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        loginFragment = LoginFragment()
+        signupFragment = SignUpFragment()
+
+        val fragments = arrayListOf(loginFragment, signupFragment)
+        val adapter = LoginAdapter(fragments, this)
+        login_view_pager.adapter = adapter
+
+        TabLayoutMediator(login_tab_layout, login_view_pager) { tab, position ->
+            if (position == 0)
+                tab.text = "Login"
+            else
+                tab.text = "Signup"
+        }.attach()
     }
 
     override fun onStart() {
         super.onStart()
-        mAuth = Firebase.auth
         val user = mAuth.currentUser
-
-        startActivity(Intent(this, LoginActivity::class.java))
+        Log.d("User", user.toString())
+        if(user != null && user.isEmailVerified){
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private suspend fun loadProviderId(providerEmail: String): String  = coroutineScope{

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.orderfoodappforenterprise.MessageChatActivity
+import com.example.orderfoodappforenterprise.activities.MessageChatActivity
 import com.example.orderfoodappforenterprise.R
 import com.example.orderfoodappforenterprise.model.ChatItem
 import com.google.firebase.auth.ktx.auth

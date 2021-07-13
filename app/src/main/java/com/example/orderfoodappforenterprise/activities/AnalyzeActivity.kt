@@ -1,4 +1,4 @@
-package com.example.orderfoodappforenterprise
+package com.example.orderfoodappforenterprise.activities
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
@@ -17,6 +17,8 @@ import com.anychart.core.cartesian.series.Line
 import com.anychart.enums.Anchor
 import com.anychart.enums.MarkerType
 import com.anychart.enums.TooltipPositionMode
+import com.example.orderfoodappforenterprise.LoadingDialog
+import com.example.orderfoodappforenterprise.R
 import com.example.orderfoodappforenterprise.model.DishIncome
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
